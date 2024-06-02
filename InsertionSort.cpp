@@ -7,7 +7,7 @@
 void insertionSort(std::vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; ++i) {
-        int key = arr[i];
+        int key = arr[i]; //second element is set to the key
         int j = i - 1;
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
@@ -25,7 +25,7 @@ int main() {
     std::uniform_int_distribution<> dis(1, 100); // Generate numbers between 1 and 100
 
     // Number of random numbers to generate
-    const int numRandomNumbers = 10;
+    const int numRandomNumbers = 20;
 
     // Vector to store the random numbers
     std::vector<int> randomNumbers;
