@@ -48,6 +48,32 @@ void quickSort(std::vector<int>& arr)
         quick_Sort(arr,pivot+1,high);
     }
 }
+
+int Partition(std::vector<int> arr, int low, int high)
+{
+    int pi;
+    pi=arr[low];
+    int i=low;
+    int j= high+1;
+    while (i<j)
+    {
+        do
+        {
+            j=j-1;
+        } while (arr[i]>pi);
+        do
+        {
+            i=i+1;
+        } while (arr[i]<pi);
+        if(i<j)
+        {
+            int temp= arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+        }
+        
+    }
+}
 void quick_Sort(std::vector<int> &a, int i, int j)
 {
 
