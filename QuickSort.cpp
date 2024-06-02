@@ -2,6 +2,10 @@
 #include <vector>
 #include <random>
 
+void quickSort(std::vector<int>& );
+int Partition(std::vector<int>&,int ,int);
+void quick_Sort(std::vector<int> &, int , int );
+
 int main() {
     // Create a random number generator engine
     std::random_device rd;
@@ -22,10 +26,30 @@ int main() {
     }
 
     // Output the random numbers
-    std::cout << "Random numbers:" << std::endl;
+    std::cout << "Unsorted Random numbers:" << std::endl;
     for (int number : randomNumbers) {
         std::cout << number << std::endl;
     }
-
+    std::cout<<std::endl;
+    quickSort(randomNumbers);
     return 0;
 }
+
+void quickSort(std::vector<int>& arr)
+{
+    int n = arr.size();
+    int low=0;
+    int high= n;
+    int pivot;
+    if(low<high)
+    {
+        int pivot=Partition(arr,low,high);
+        quick_Sort(arr,low, pivot-1);
+        quick_Sort(arr,pivot+1,high);
+    }
+}
+void quick_Sort(std::vector<int> &a, int i, int j)
+{
+
+}
+
