@@ -2,9 +2,9 @@
 #include <vector>
 #include <random>
 
-void quickSort(std::vector<int>& );
-int Partition(std::vector<int>&,int ,int);
-void quick_Sort(std::vector<int> &, int , int );
+void quickSort(std::vector<int>& arr);
+void quick_Sort(std::vector<int>& arr, int low, int high);
+int Partition(std::vector<int>& arr, int low, int high);
 
 int main() {
     // Create a random number generator engine
@@ -30,52 +30,48 @@ int main() {
     for (int number : randomNumbers) {
         std::cout << number << std::endl;
     }
-    std::cout<<std::endl;
+    std::cout << std::endl;
+
+    // Sort the random numbers using quicksort
     quickSort(randomNumbers);
+
+    // Output the sorted numbers
+    std::cout << "Sorted Random numbers:" << std::endl;
+    for (int number : randomNumbers) {
+        std::cout << number << std::endl;
+    }
+
     return 0;
 }
 
-void quickSort(std::vector<int>& arr)
-{
-    int n = arr.size();
-    int low=0;
-    int high= n;
-    int pivot;
-    if(low<high)
-    {
-        int pivot=Partition(arr,low,high);
-        quick_Sort(arr,low, pivot-1);
-        quick_Sort(arr,pivot+1,high);
+void quickSort(std::vector<int>& arr) {
+    if (arr.size() <= 1) return; // No need to sort
+    quick_Sort(arr, 0, arr.size() - 1);
+}
+
+void quick_Sort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pivot = Partition(arr, low, high);
+        quick_Sort(arr, low, pivot - 1);
+        quick_Sort(arr, pivot + 1, high);
     }
 }
 
-int Partition(std::vector<int> arr, int low, int high)
-{
-    int pi;
-    pi=arr[low];
-    int i=low;
-    int j= high+1;
-    while (i<j)
-    {
-        do
-        {
-            j=j-1;
-        } while (arr[i]>pi);
-        do
-        {
-            i=i+1;
-        } while (arr[i]<pi);
-        if(i<j)
-        {
-            int temp= arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
+int Partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high + 1;
+
+    while (true) {
+        while (arr[++i] < pivot) {
+            if (i == high) break;
         }
-        
+        while (arr[--j] > pivot) {
+            if (j == low) break;
+        }
+        if (i >= j) break;
+        std::swap(arr[i], arr[j]);
     }
+    std::swap(arr[low], arr[j]);
+    return j;
 }
-void quick_Sort(std::vector<int> &a, int i, int j)
-{
-
-}
-
